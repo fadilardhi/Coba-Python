@@ -1,0 +1,38 @@
+SELECT 
+P.nomor_peserta,
+P.nama_lengkap,
+AP.username,
+DI.tempat_lahir,
+DI.tanggal_lahir,
+DA.jenis_alamat,
+DA.alamat,
+DM.bentuk_pembiayaan,
+DM.pembiayaan_perumahan,
+DP.nomor_identitas_pekerja,
+DS.jumlah,
+DS.saldo,
+DT.jumlah_unit,
+DT.total_unit,
+DT.saldo,
+MP.berminat,
+VNR.nik,
+VNR.data_nik
+FROM `integrated-data-platform.prod_idp_stg.peserta` AS P
+INNER JOIN `integrated-data-platform.prod_idp_stg.akun_peserta` AS AP
+ON P.id = AP.peserta
+INNER JOIN `integrated-data-platform.prod_idp_stg.data_individu` AS DI
+ON P.id = DI.peserta
+INNER JOIN `integrated-data-platform.prod_idp_stg.data_alamat` AS DA
+ON P.id = DA.peserta
+INNER JOIN `integrated-data-platform.prod_idp_stg.data_manfaat` AS DM
+ON P.id = DM.peserta
+INNER JOIN `integrated-data-platform.prod_idp_stg.data_pekerjaan` AS DP
+ON P.id = DP.peserta
+INNER JOIN `integrated-data-platform.prod_idp_stg.data_simpanan` AS DS
+ON P.id = DS.peserta
+INNER JOIN `integrated-data-platform.prod_idp_stg.data_tabungan` AS DT
+ON P.id = DT.peserta
+INNER JOIN `integrated-data-platform.prod_idp_stg.minat_pembiayaan` AS MP
+ON P.id = MP.peserta
+INNER JOIN `integrated-data-platform.prod_idp_stg.validasi_nik_request` AS VNR
+ON P.id = VNR.peserta
